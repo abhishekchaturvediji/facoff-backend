@@ -1,0 +1,70 @@
+{
+  "name": "faceoff-node",
+  "version": "1.0.0",
+  "description": "faceoff-server-side",
+  "main": "index.js",
+  "scripts": {
+    "lint": "gts lint",
+    "test": "npx mocha -r node_modules/ts-node/register ./src/test/*.ts",
+    "clean": "gts clean",
+    "copy-files": "copy -r ./src/public/ ./dist/src/public",
+    "compile": "tsc",
+    "compile-watch": "tsc --watch",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint",
+    "start-local": "NODE_ENV=local node ./dist/src/index.js",
+    "start-watch": "NODE_ENV=local supervisor node ./dist/src/index.js",
+    "make-table-class": "npm run compile && node -e 'require(\"./dist/src/commands/generate_table.js\").GenerateTableClass()'",
+    "build": "npm run clean && npm run compile",
+    "start": "node ./dist/src/index.js",
+    "dev": "nodemon --config nodemon.json src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sketchish/faceoff-be.git"
+  },
+  "author": "Abhishek Chaturvedi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sketchish/faceoff-be/issues"
+  },
+  "homepage": "https://github.com/sketchish/faceoff-be#readme",
+  "dependencies": {
+    "-": "^0.0.1",
+    "@aws-sdk/client-s3": "^3.485.0",
+    "@aws-sdk/lib-storage": "^3.485.0",
+    "@aws-sdk/s3-request-presigner": "^3.485.0",
+    "@types/lodash": "^4.14.202",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "D": "^1.0.0",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "email-templates": "^11.1.1",
+    "express": "^4.18.2",
+    "express-jwt": "^8.4.1",
+    "fcm-node": "^1.6.1",
+    "gts": "^5.2.0",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
+    "nodemailer": "^6.9.7",
+    "winston": "^3.11.0",
+    "winston-mongodb": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.4",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2"
+  },
+  "engines": {
+    "node": "18.12.0"
+  }
+}
